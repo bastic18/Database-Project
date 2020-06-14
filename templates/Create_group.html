@@ -1,0 +1,139 @@
+{% extends 'layout.html' %}
+{%block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{form.hidden_tag()  }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-3"> {{ legend }} </legend>
+
+            <div class="form-group">
+                <i class="fas fa-users"></i>
+                {{form.group_id.label(class="form-control-label")}}
+                {% if form.group_id.errors %}
+                    {{form.group_id(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.group_id.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.group_id(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                {{form.group_name.label(class="form-control-label")}}
+                {% if form.group_name.errors %}
+                    {{form.group_name(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.group_name.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.group_name(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+
+
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                {{form.group_topic.label(class="form-control-label")}}
+                {% if form.group_topic.errors %}
+                    {{form.group_topic(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.group_topic.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.group_topic(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+
+
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                {{form.group_context_editor.label(class="form-control-label")}}
+                {% if form.group_context_editor.errors %}
+                    {{form.group_context_editor(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.group_context_editor.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.group_context_editor(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+
+
+
+            
+
+        </fieldset>
+        <div class="form-group"> 
+        {{form.submit(class="btn btn-outline-info")}}
+        </div>
+    </form>
+
+</div>
+
+
+{%if len_group==0%}
+
+    <h4> USER HAS CREATED NO GROUP </h4>
+{%else%}
+
+<div class="content-section">
+
+
+
+    
+    {% for row in groups %}
+<br>
+   <br>
+   <p>GROUP CREATOR: {{ row.username }}</p>
+   <p>GROUP ID: {{ row.group_id }}</p>
+    <p>GROUP NAME: {{ row.group_name }}</p>
+    <p>TOPIC: {{ row.group_topic }}</p>
+    <p>CONTENT EDITOR: {{ row.content_editors }}</p>
+    
+    
+<br>
+<br>
+
+{% endfor %} 
+
+</div>
+
+{%endif%}
+
+
+
+
+{%endblock  content%}

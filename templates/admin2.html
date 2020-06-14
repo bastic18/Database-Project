@@ -1,0 +1,117 @@
+{% extends 'admin_layout.html' %}
+{%block content %}
+    <h1> WELCOME </h1>
+    <div class="content-section">
+        <form method="POST" action="">
+            {{form.hidden_tag()  }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-6"> <h1>ADMINISTRATOR INTERFACE</h1></legend>
+
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    {{form.search.label(class="form-control-label")}}
+                    {% if form.search.errors %}
+                        {{form.search(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.search.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.search(class="form-control form-control-lg")}}
+                    {% endif%}
+                </div>
+                
+
+            </fieldset>
+            <div class="form-group"> 
+            {{form.submit(class="btn btn-outline-info")}}
+            </div>
+              
+        </form>
+
+    </div>
+
+
+
+    <div>
+
+        <br><h2>Table 1: User Details</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Username     </th>
+                <th> Email     </th>
+                <th>Firstname   </th>
+                <th> Lastname   </th>
+                <th>About    </th>
+                <th> Telephone   </th>
+                <th>Street    </th>
+                <th> City    </th>
+                <th> Country    </th>
+
+            </tr>
+
+            <tr>
+                <td>{{ info[0].username}}    </td>
+                <td>{{ info[0].email}}        </td>
+                <td>{{ info[0].firstname}}         </td>
+                <td> {{ info[0].lastname }}        </td>
+                <td>{{ info[0].about }}             </td>
+                <td> {{info[0].telephone }}         </td>
+                <td>{{info[0].street}}           </td>
+                <td>{{ info[0].city}}           </td>
+                <td> {{info[0].country }}           </td>
+
+            </tr>
+
+        </table>
+        <br><br>
+
+
+
+
+
+        <br><h2>Table 2: User Friends</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Username     </th>
+                <th> Friend ID   </th>
+                <th>Friend type   </th>
+
+            </tr>
+      {% for i in info_friends %}
+            <tr>
+                <td>{{ i.username}}    </td>
+                <td>{{ i.friend_id}}        </td>
+                <td>{{ .friend_type}}         </td>
+          
+
+            </tr>
+    {%endfor%}
+        </table>
+        <br><br>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+{%endblock  content%}
+

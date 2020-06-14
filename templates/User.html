@@ -1,0 +1,185 @@
+{% extends 'layout.html' %}
+{%block content %}
+    <h1> WELCOME </h1>
+    <div class="content-section">
+        <form method="POST" action="">
+            {{form.hidden_tag()  }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> SIGN UP TODAY!!!</legend>
+
+                <div class="form-group">
+                    <i class="fas fa-user-edit"></i>
+                    {{form.firstname.label(class="form-control-label")}}
+
+                    {% if form.firstname.errors %}
+                        {{form.firstname(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.firstname.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.firstname(class="form-control form-control-lg")}}
+                    {% endif%}
+                    
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-user-edit"></i>
+                    {{form.lastname.label(class="form-control-label")}}
+
+                    {% if form.lastname.errors %}
+                        {{form.lastname(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.lastname.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.lastname(class="form-control form-control-lg")}}
+                    {% endif%}
+                    
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-book-reader"></i>
+                    {{form.about.label(class="form-control-label")}}
+
+                    {% if form.about.errors %}
+                        {{form.about(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.about.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.about(class="form-control form-control-lg")}}
+                    {% endif%}
+                    
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <i class="fas fa-mobile"></i>
+                    {{form.telephone.label(class="form-control-label")}}
+
+                    {% if form.telephone.errors %}
+                        {{form.telephone(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.telephone.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.telephone(class="form-control form-control-lg")}}
+                    {% endif%}
+                    
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <i class="fas fa-address-card"></i>
+                    {{form.street.label(class="form-control-label")}}
+                    {% if form.street.errors %}
+                        {{form.street(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.street.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.street(class="form-control form-control-lg")}}
+                    {% endif%}
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-address-card"></i>
+                    {{form.city.label(class="form-control-label")}}
+                    {% if form.city.errors %}
+                        {{form.city(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.city.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.city(class="form-control form-control-lg")}}
+                    {% endif%}
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-address-card"></i>
+                    {{form.country.label(class="form-control-label")}}
+                    {% if form.country.errors %}
+                        {{form.country(class="form-control form-control-lg is-invalid")}}
+
+                        <div class="invalid-feedback">
+                        {% for e in form.country.errors %}
+                            <span>
+                                {{e}}
+                            </span>
+                        {%endfor%}
+                        
+                        </div>
+
+                    {% else%}
+
+                        {{form.country(class="form-control form-control-lg")}}
+                    {% endif%}
+                </div>
+
+
+            </fieldset>
+            <div class="form-group"> 
+            {{form.submit(class="btn btn-outline-info")}}
+            </div>
+        </form>
+
+    </div>
+
+    <div class="border-top pt-3">
+        <small class="text-muted"> 
+        Already Have an Account? <a class="ml-2" href="{{url_for('login')}}">Sign In </a>
+        </small>
+    </div>
+
+{%endblock  content%}
+

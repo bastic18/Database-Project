@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{%block content %}
+{% if l_user==0 and l_posts==0 %}
+        <h1> NooooO POST HAS YET</h1>
+
+{% else %}
+        {%for p in posts%}
+        
+            <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small> Creater: <a class="mr-2" href="#"> {{ p.username }}</a></small>
+                <small class="text-muted"> Date: {{ p.date }}</small>
+                </div>
+                <h2>Title: <a class="article-title" href="{{ url_for('post', post_id=p.post_id) }}"> {{ p.title }}</a></h2>
+                <p class="article-content"> <h4>Content:</h4> {{ p.content }}</p>
+                <p class="article-content"><h4>Description:</h4> {{ p.post_description }}</p>
+                {%if p.picture==''%}
+                    
+                {%else%}
+                <h4>Image</h4>
+                <img src="{{url_for('static', filename='posts/'+ p.picture)}}" alt="Image for post">
+                {%endif%}
+            </div>
+            </article>
+        {% endfor %}
+{%endif%}
+{%endblock  content%}
+
+

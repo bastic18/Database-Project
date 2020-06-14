@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{%block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{form.hidden_tag()  }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-3"> {{ legend }} </legend>
+
+            <div class="form-group">
+                <i class="fas fa-users"></i>
+                {{form.friend_username.label(class="form-control-label")}}
+                {% if form.friend_username.errors %}
+                    {{form.friend_username(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.friend_username.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.friend_username(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                {{form.friend_type.label(class="form-control-label")}}
+                {% if form.friend_type.errors %}
+                    {{form.friend_type(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.friend_type.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.friend_type(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+
+            
+
+        </fieldset>
+        <div class="form-group"> 
+        {{form.submit(class="btn btn-outline-info")}}
+        </div>
+    </form>
+
+</div>
+
+{%endblock  content%}

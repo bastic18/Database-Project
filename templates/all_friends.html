@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{%block content %}
+
+
+{% if l_friends==0 %}
+        <h1> NO FRIENDS HAS YET</h1>
+
+{% else %}
+
+{% for friend in friends%}
+    <article class="media content-section">
+        
+    <div class="media-body">
+        <div class="article-metadata">
+            
+            <small> FRIEND:  {{ friend.friend_id }}</small>
+            <small> Friend TYPE: {{ friend.friend_type }}</small>
+        </div>
+        <h2 class="artcle-title">NAME: {{ friend.firstname}}    {{friend.lastname }}</a></h2>
+        <p class="article-content"> <h4>ABOUT:</h4> {{ friend.about }}</p>
+        <p class="article-content"><h4>CITY:</h4> {{ friend.city }}</p>
+    </div>
+
+    
+    </article>
+    {%endfor %}
+
+{%endif%}
+{%endblock  content%}
+
+

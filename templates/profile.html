@@ -1,0 +1,254 @@
+{% extends 'layout.html' %}
+{%block content %}
+    <!-- <h1> {{session['username']}} </h1> -->
+    <div class="content-section">
+        <div class="media">
+            {%if user_profile_pic==None %}
+          <img class="rounded-circle account-img" src="{{ default }}">
+          {%else %}
+          <img class="rounded-circle account-img" src="{{url_for('static', filename='photos/'+user_profile_pic.photo_id)}}">
+          {% endif %}
+          <div class="media-body">
+            <h2 class="account-heading">{{session['username']}}</h2>
+            <h2 class="account-heading">{{session['email']}}</h2>
+            <p class="text-secondary"><h4> {{pro_info['firstname']}} {{pro_info['lastname']}} </h4></p>
+            <p class="text-secondary"><i class="fas fa-book-reader"></i> {{pro_info['about']}} </p>
+            <p class="text-secondary"><i class="fas fa-mobile"></i> {{pro_info['telephone']}} </p>
+            <p class="text-secondary"><i class="fas fa-address-card"></i> {{pro_info['street']}} </p>
+            <p class="text-secondary"><i class="fas fa-address-card"></i> {{pro_info['city']}} </p>
+            <p class="text-secondary"><i class="fas fa-address-card"></i> {{pro_info['country']}} </p>
+
+          </div>
+        </div>
+        <!-- FORM HERE -->
+    
+            <form method="POST" action="">
+                {{form.hidden_tag()  }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4"> Profile Info!!!</legend>
+
+                    <div class="form-group">
+                        <i class="fas fa-user-tag"></i>
+                        {{form.username.label(class="form-control-label")}}
+    
+                        {% if form.username.errors %}
+                            {{form.username(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.username.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.username(class="form-control form-control-lg", value=pro_info['username'])}}
+                        {% endif%}
+                        
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        {{form.email.label(class="form-control-label")}}
+                        {% if form.email.errors %}
+                            {{form.email(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.email.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.email(class="form-control form-control-lg", value=pro_info['email'])}}
+                        {% endif%}
+                    </div>
+
+
+
+
+
+    
+                    <div class="form-group">
+                        <i class="fas fa-user-edit"></i>
+                        {{form.firstname.label(class="form-control-label")}}
+    
+                        {% if form.firstname.errors %}
+                            {{form.firstname(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.firstname.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.firstname(class="form-control form-control-lg", value=pro_info['firstname'])}}
+                        {% endif%}
+                        
+                    </div>
+    
+                    <div class="form-group">
+                        <i class="fas fa-user-edit"></i>
+                        {{form.lastname.label(class="form-control-label")}}
+    
+                        {% if form.lastname.errors %}
+                            {{form.lastname(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.lastname.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.lastname(class="form-control form-control-lg", value=pro_info['lastname'])}}
+                        {% endif%}
+                        
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fas fa-book-reader"></i>
+                        {{form.about.label(class="form-control-label")}}
+    
+                        {% if form.about.errors %}
+                            {{form.about(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.about.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.about(class="form-control form-control-lg", value=pro_info['about'])}}
+                        {% endif%}
+                        
+                    </div>
+
+
+
+    
+                    <div class="form-group">
+                        <i class="fas fa-mobile"></i>
+                        {{form.telephone.label(class="form-control-label")}}
+    
+                        {% if form.telephone.errors %}
+                            {{form.telephone(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.telephone.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.telephone(class="form-control form-control-lg",value=pro_info['telephone'])}}
+                        {% endif%}
+                        
+                    </div>
+    
+    
+    
+    
+                    <div class="form-group">
+                        <i class="fas fa-address-card"></i>
+                        {{form.street.label(class="form-control-label")}}
+                        {% if form.street.errors %}
+                            {{form.street(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.street.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.street(class="form-control form-control-lg", value=pro_info['street'])}}
+                        {% endif%}
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-address-card"></i>
+                        {{form.city.label(class="form-control-label")}}
+                        {% if form.city.errors %}
+                            {{form.city(class="form-control form-control-lg is-invalid",)}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.city.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.city(class="form-control form-control-lg", value=pro_info['city'])}}
+                        {% endif%}
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-address-card"></i>
+                        {{form.country.label(class="form-control-label")}}
+                        {% if form.country.errors %}
+                            {{form.country(class="form-control form-control-lg is-invalid")}}
+    
+                            <div class="invalid-feedback">
+                            {% for e in form.country.errors %}
+                                <span>
+                                    {{e}}
+                                </span>
+                            {%endfor%}
+                            
+                            </div>
+    
+                        {% else%}
+    
+                            {{form.country(class="form-control form-control-lg", value=pro_info['country'])}}
+                        {% endif%}
+                    </div>
+    
+                </fieldset>
+                <div class="form-group"> 
+                {{form.submit(class="btn btn-outline-info")}}
+                </div>
+            </form>
+    
+        
+
+
+
+
+
+
+
+
+      </div>
+
+{%endblock  content%}

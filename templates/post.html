@@ -1,0 +1,114 @@
+{% extends 'layout.html' %}
+{%block content %}
+    <article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small> Creater: <a class="mr-2" href="#"> {{ post.username }}</a></small>
+        <small class="text-muted"> Date: {{ post.date }}</small>
+        {% if post.username == current_user %}
+                <div>
+                    <a class='btn btn-secondary btn-sm m-1' href="{{ url_for('update_post', post_id= post.post_id)}}"> Update </a>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal"> Delete</button>
+                </div>
+
+        {%endif %}
+        </div>
+        <h2 class="artcle-title">Title: {{ post.title }}</a></h2>
+        <p class="article-content"> <h4>Content:</h4> {{ post.content }}</p>
+        <p class="article-content"><h4>Description:</h4> {{ post.post_description }}</p>
+        {%if post.picture==''%}
+                    
+        {%else%}
+        <img src="{{url_for('static', filename='posts/'+ post.picture)}}" alt="Image for post">
+        {%endif%}
+    </div>
+    </article>
+
+
+    <form method="POST" action="">
+    <article class="media content-section">
+      <div class="media-body">
+        <h2>COMMENTS</h2>
+
+        <div class="form-group">
+          <i class="fas fa-user"></i>
+          {{form.Comment.label(class="form-control-label")}}
+          {% if form.Comment.errors %}
+              {{form.Comment(class="form-control form-control-lg is-invalid")}}
+
+              <div class="invalid-feedback">
+              {% for e in form.Comment.errors %}
+                  <span>
+                      {{e}}
+                  </span>
+              {%endfor%}
+              
+              </div>
+
+          {% else%}
+
+              {{form.Comment(class="form-control form-control-lg")}}
+          {% endif%}
+      </div>
+
+      <div class="form-group"> 
+        {{form.submit(class="btn btn-outline-info")}}
+      </div>
+
+      </div>
+      </article>
+      </form>
+
+
+
+
+    {%for c in comments%}
+        
+    <article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small> Creater: <a class="mr-2" href="#"> {{ c.username }}</a></small>
+        <small class="text-muted"> Date: {{ c.date }}</small>
+        </div>
+        <h2>Title:  {{ c.title }}</h2>
+        <p class="article-content"> <h4>Comment:</h4> {{ c.comment }}</p>
+       
+    </div>
+    </article>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        POST WILL BE DELETED
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_post', post_id= post.post_id)}}" method="POST">
+              <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{%endblock  content%}
+
+

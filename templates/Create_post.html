@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+{%block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{form.hidden_tag()  }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-3"> {{ legend }} </legend>
+
+            <div class="form-group">
+                <i class="fas fa-pen-alt"></i>
+                {{form.Title.label(class="form-control-label")}}
+                {% if form.Title.errors %}
+                    {{form.Title(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.Title.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.Title(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+            <div class="form-group">
+                <i class="fas fa-pen"></i>
+                {{form.Description.label(class="form-control-label")}}
+                {% if form.Description.errors %}
+                    {{form.Description(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.Description.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.Description(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-pen-nib"></i>
+                {{form.Content.label(class="form-control-label")}}
+                {% if form.Content.errors %}
+                    {{form.Content(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.Content.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.Content(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+            <div class="form-group">
+                {{form.picture.label()}}
+                {{form.picture(class="form-control-file")}}
+                {% if form.picture.errors %}
+
+                    {% for e in form.picture.errors %}
+                        <span class="text-danger">  {{ e }} </span> </br>
+                    {%endfor%}
+
+                {%endif%}
+
+            </div>
+
+
+        </fieldset>
+        <div class="form-group"> 
+        {{form.submit(class="btn btn-outline-info")}}
+        </div>
+    </form>
+
+</div>
+
+{%endblock  content%}

@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{%block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{form.hidden_tag()  }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-3"> {{ legend }} </legend>
+
+            <div class="form-group">
+                <i class="fas fa-users"></i>
+                {{form.group_id.label(class="form-control-label")}}
+                {% if form.group_id.errors %}
+                    {{form.group_id(class="form-control form-control-lg is-invalid")}}
+
+                    <div class="invalid-feedback">
+                    {% for e in form.group_id.errors %}
+                        <span>
+                            {{e}}
+                        </span>
+                    {%endfor%}
+                    
+                    </div>
+
+                {% else%}
+
+                    {{form.group_id(class="form-control form-control-lg")}}
+                {% endif%}
+            </div>
+            
+
+            
+
+        </fieldset>
+        <div class="form-group"> 
+        {{form.submit(class="btn btn-outline-info")}}
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+
+{%if len_group==0%}
+
+    <h4> USER HAS NOT JOIN ANY GROUP AS YET</h4>
+{%else%}
+
+<div class="content-section">
+
+
+
+    
+    {% for row in groups %}
+<br>
+   <br>
+   <p><b>GROUP CREATOR:</b> {{ row.creator }}                     <b> GROUP ID:</b> {{ row.group_id }}</p>
+   <p><b> GROUP CREATE DATE:</b> {{ row.createdate }}              <b> GROUP JOIN DATE:</b> {{ row.joindate }}   </p>        
+    <p><b>GROUP NAME:</b> {{ row.group_name }}                     <b>TOPIC: </b>{{ row.group_topic }}</p>
+    <p><b>CONTENT EDITOR:</b> {{ row.content_editors }}</p>
+
+    
+    
+<br>
+<br>
+
+{% endfor %} 
+
+</div>
+
+{%endif%}
+
+{%endblock  content%}

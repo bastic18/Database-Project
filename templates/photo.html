@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+{%block content %}
+    <h1> ALL PHOTOS </h1>
+    <div class="content-section">
+    <form method="POST" action=""  enctype="multipart/form-data">
+        {{form.hidden_tag()  }}
+        
+            
+        
+        <div class="form-group">
+            <!-- <i class="fas fa-user-tag"></i> -->
+            {{form.photo_name.label(class="form-control-label")}}
+
+            {% if form.photo_name.errors %}
+                {{form.photo_name(class="form-control form-control-lg is-invalid")}}
+
+                <div class="invalid-feedback">
+                {% for e in form.photo_name.errors %}
+                    <span>
+                        {{e}}
+                    </span>
+                {%endfor%}
+                
+                </div>
+
+            {% else%}
+
+                {{form.photo_name(class="form-control form-control-lg")}}
+            {% endif%}
+            
+        </div>
+
+        <div class="form-group">
+           
+            {{form.description.label(class="form-control-label")}}
+
+            {% if form.description.errors %}
+                {{form.description(class="form-control form-control-lg is-invalid")}}
+
+                <div class="invalid-feedback">
+                {% for e in form.description.errors %}
+                    <span>
+                        {{e}}
+                    </span>
+                {%endfor%}
+                
+                </div>
+
+            {% else%}
+
+                {{form.description(class="form-control form-control-lg")}}
+            {% endif%}
+            
+        </div>
+        
+        <div class="form-check">
+            {{form.profile_pic(class="form-check-input")}}
+            {{form.profile_pic.label(class="form-check-label")}}
+        </div>
+        
+        
+            <div class="form-group">
+                {{form.picture.label()}}
+                {{form.picture(class="form-control-file")}}
+                {% if form.picture.errors %}
+
+                    {% for e in form.picture.errors %}
+                        <span class="text-danger">  {{ e }} </span> </br>
+                    {%endfor%}
+
+                {%endif%}
+
+            </div>
+        
+            <div class="form-group"> 
+               
+            {{form.submit(class="btn btn-outline-info")}}
+            </div>
+
+           
+
+
+
+    <!-- </div>
+
+
+     <img src="{{url_for('static', filename='photos/'+'ff519425833fb268.jpg')}}" alt="Image to greet persons"> 
+
+     </div> -->
+
+
+
+    </form>
+    
+
+</div>
+
+
+
+<div class="content-section">
+    
+    {% for row in pictures %}
+<br>
+   <br>
+    <p>NAME: {{ row.photo_name }}</p>
+    <p>DESCRIPTION: {{ row.photo_description }}</p>
+    <img src="{{url_for('static', filename='photos/'+row.photo_id)}}" alt="Image to greet persons">
+    
+<br>
+<br>
+
+{% endfor %} 
+
+</div>
+
+
+{%endblock  content%}
+
